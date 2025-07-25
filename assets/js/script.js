@@ -1,4 +1,4 @@
-async function searchAddres(e) {
+async function searchAddres() {
     let cepInput = document.querySelector('#cep').value;
 
     // validar com regex
@@ -99,7 +99,7 @@ function resetModalInfos() {
     document.querySelector('#searchUf').value = '';
     document.querySelector('#searchCity').value = '';
     document.querySelector('#searchStreetName').value = '';
-    document.querySelector('#resultCep').innerHTML = 'CEP:';
+    document.querySelector('#onlyCepNumbers').innerText = '';
     document.querySelector('#hideCopy').style.display = 'none';
 };
 
