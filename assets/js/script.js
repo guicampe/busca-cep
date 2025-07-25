@@ -1,9 +1,9 @@
-document.querySelector('#cep').addEventListener('keyup', async (e) => {
+async function searchAddres(e) {
     let cepInput = document.querySelector('#cep').value;
 
     // validar com regex
 
-    if (cepInput !== '' && e.key === 'Enter') {
+    if (cepInput !== '') {
         showWarning();
 
         let url = `https://viacep.com.br/ws/${encodeURI(cepInput)}/json/`;
@@ -30,11 +30,14 @@ document.querySelector('#cep').addEventListener('keyup', async (e) => {
         showWarning();
     }
     }
-})
+};
 
-document.querySelector('.buttons').addEventListener('click', () => {
-    clearInfos();
-})
+function showWarning() {
+    document.querySelector('#street').value = '...';
+    document.querySelector('#neighborhood').value = '...';
+    document.querySelector('#city').value = '...';
+    document.querySelector('#state').value = '...';
+};
 
 function updateInfos(json) {
     showWarning('');
@@ -45,14 +48,7 @@ function updateInfos(json) {
         document.querySelector('#state').value = json.state;
     
     shippingPrice(`Frete: R$${(Math.random() * 2).toFixed(2)}`);
-}
-
-function showWarning() {
-    document.querySelector('#street').value = '...';
-    document.querySelector('#neighborhood').value = '...';
-    document.querySelector('#city').value = '...';
-    document.querySelector('#state').value = '...';
-}
+};
 
 function clearInfos() {
     showWarning('');
@@ -64,18 +60,16 @@ function clearInfos() {
     document.querySelector('#state').value = '';
 
     shippingPrice('&nbsp;');
-}
+};
 
 function shippingPrice(value) {
     document.querySelector('#shippingPrice').innerHTML = value;
-}
+};
 
-document.querySelector('#searchButton').addEventListener('click', async () => {
-
+async function searchCep() {
     let ufInput = document.querySelector('#searchUf').value;
     let cityInput = document.querySelector('#searchCity').value;
     let streetName = document.querySelector('#searchStreetName').value;
-    let cepMessage = document.querySelector('#resultCep').innerHTML;
 
     let url = `https://viacep.com.br/ws/${encodeURI(ufInput)}/${encodeURI(cityInput)}/${encodeURI(streetName)}/json/`;
 
@@ -83,28 +77,31 @@ document.querySelector('#searchButton').addEventListener('click', async () => {
         let response = await fetch(url);
         let json = await response.json();
 
-        if (response.status === 200 && !json.erro) {
+        if (Array.isArray(json) && json.length > 0) {
             showCep({
                 cep: json[0].cep
             });
         } else {
-            cepMessage += 'Não localizado!';
+            document.querySelector('#resultCep').innerHTML = 'CEP: Não localizado!';
+            document.querySelector('#hideCopy').style.display = 'none';
         }
     } catch (error) {
-        cepMessage += 'Erro localizando o CEP.';
+        document.querySelector('#onlyCepNumbers').innerHTML = 'Erro localizando o CEP.';
     }
-})
+};
 
 function showCep(json) {
-    document.querySelector('#resultCep').innerHTML = `CEP: ${json.cep}`;
-}
+    document.querySelector('#onlyCepNumbers').innerHTML = json.cep;
+    document.querySelector('#hideCopy').style.display = 'inline-block';
+};
 
 function resetModalInfos() {
     document.querySelector('#searchUf').value = '';
     document.querySelector('#searchCity').value = '';
     document.querySelector('#searchStreetName').value = '';
-    document.querySelector('#resultCep').innerHTML = 'CEP:'
-}
+    document.querySelector('#resultCep').innerHTML = 'CEP:';
+    document.querySelector('#hideCopy').style.display = 'none';
+};
 
 document.querySelector('.modalOpener').addEventListener('click', () => {
     document.querySelector('.modal').classList.remove('hidden');
@@ -123,4 +120,45 @@ document.querySelector('.overlay').addEventListener('click', () => {
     document.querySelector('.overlay').classList.add('hidden');
 
     resetModalInfos();
+});
+
+document.querySelector('#cep').addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') searchAddres();
+});
+
+document.querySelector('#cep').addEventListener('focusout', searchAddres)
+
+document.querySelector('.buttons').addEventListener('click', () => {
+    clearInfos();
+});
+
+document.querySelector('#searchButton').addEventListener('click', searchCep);
+
+document.querySelector('#searchStreetName').addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') searchCep();
+});
+
+document.querySelector('#hideCopy').addEventListener('click', async () => {
+    const cepElement = document.querySelector('#onlyCepNumbers');
+    const cepText = cepElement.innerText;
+
+    try {
+        await navigator.clipboard.writeText(cepText);
+
+        cepElement.innerText = 'Copiado √';
+        cepElement.style.color = '#28a745';
+
+        setTimeout(() => {
+            cepElement.innerText = cepText;
+            cepElement.style.color = '#4B352A';
+        }, 1300);
+    } catch (error) {
+        cepElement.innerText = 'Algo deu errado. Tente manualmente.';
+        cepElement.style.color = '#e53935'
+
+        setTimeout(() => {
+            cepElement.innerText = cepText;
+            cepElement.style.color = '#4B352A';
+        }, 1600);
+    }
 });

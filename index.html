@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de endereço</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,content_copy"/>
 </head>
 
 <body>
     <header>
-        <h1>CEP</h1>
-        <p>Prática de consumo de API</p>
+        <h1>Busca CEP</h1>
+        <p>Prática de consumo de API | Prática de modal</p>
     </header>
 
     <main class="mainContainer">
@@ -48,7 +49,7 @@
                 <span class="material-symbols-outlined">close</span>
                 <label for="uf" class="labelFlex">
                     UF
-                    <input type="text" id="searchUf" spellcheck="false" maxlength="2" placeholder="Exemplo: SP">
+                    <input type="text" id="searchUf" spellcheck="false" maxlength="2">
                 </label>
                 <label for="cidade" class="labelFlex">
                     Cidade
@@ -59,17 +60,19 @@
                     <input type="text" id="searchStreetName" minlength="3" spellcheck="false">
                 </label>
                 <button class="buttons" id="searchButton">Pesquisar</button>
-                <p id="resultCep">CEP:</p>
+                <div id="resultCepText">
+                    <p id="resultCep">CEP: <span id="onlyCepNumbers"></span></p>
+                    <span class="material-symbols-outlined" id="hideCopy">content_copy</span>
+                </div>
             </div>
         </section>
         <div class="overlay hidden"></div>
     </main>
 
     <footer>
-        <p>Desenvolvido por Guilherme Ramos Campestrini</p>
+        <p>Desenvolvido por <a href="www.linkedin.com/in/guilhermeramoscampestrini" target="_blank">Guilherme Ramos Campestrini</a></p>
     </footer>
 
     <script src="assets/js/script.js"></script>
 </body>
-
 </html>
