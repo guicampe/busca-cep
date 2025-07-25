@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de endereço</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close"/>
+</head>
+
+<body>
+    <header>
+        <h1>CEP</h1>
+        <p>Prática de consumo de API</p>
+    </header>
+
+    <main class="mainContainer">
+        <p class="title">Digite o CEP</p>
+        <label for="cep" class="labelFlex">
+            Cep
+            <input type="text" id="cep" maxlength="9" class="inputCep">
+        </label>
+        <label for="rua" class="labelFlex">
+            Rua
+            <input type="text" id="street" class="inputCep">
+        </label>
+        <label for="bairro" class="labelFlex">
+            Bairro
+            <input type="text" id="neighborhood" class="inputCep">
+        </label>
+        <label for="cidade" class="labelFlex">
+            Cidade
+            <input type="text" id="city" class="inputCep">
+        </label>
+        <label for="estado" class="labelFlex">
+            Estado
+            <input type="text" id="state" class="inputCep">
+        </label>
+        <div class="bottomFlex">
+            <button class="buttons">Próxima Etapa</button>
+            <span class="modalOpener">Não sei meu cep</span>
+        </div>
+        <p id="shippingPrice">&nbsp;</p>
+
+        <section class="modal hidden">
+            <div class="flex">
+                <span class="material-symbols-outlined">close</span>
+                <label for="uf" class="labelFlex">
+                    UF
+                    <input type="text" id="searchUf" spellcheck="false" maxlength="2" placeholder="Exemplo: SP">
+                </label>
+                <label for="cidade" class="labelFlex">
+                    Cidade
+                    <input type="text" id="searchCity" spellcheck="false">
+                </label>
+                <label for="nome da rua" class="labelFlex">
+                    Nome da Rua
+                    <input type="text" id="searchStreetName" minlength="3" spellcheck="false">
+                </label>
+                <button class="buttons" id="searchButton">Pesquisar</button>
+                <p id="resultCep">CEP:</p>
+            </div>
+        </section>
+        <div class="overlay hidden"></div>
+    </main>
+
+    <footer>
+        <p>Desenvolvido por Guilherme Ramos Campestrini</p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

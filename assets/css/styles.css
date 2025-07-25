@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF9E5;
+    color: #4B352A;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+    width: 100%;
+    min-height: 15%;
+    background-color: #004030;
+    color: #FFF9E5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.3);
+}
+
+main {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    padding: 20px;
+    margin: auto;
+    gap: 0.7em;
+    background-color: #e1e1e1;
+    border-radius: 12px;
+    max-width: fit-content;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bolder;
+}
+
+.labelFlex {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    gap: 0.1em;
+}
+
+.inputCep {
+    border: 2px solid transparent;
+    padding: 0.6em;
+    width: 99%;
+}
+
+.inputCep:focus {
+    outline: none;
+    border: 2px solid #4A9782;
+}
+
+.bottomFlex {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0.5rem;
+}
+
+.buttons {
+    cursor: pointer;
+    width: fit-content;
+    padding: 5px;
+    border: 1px solid transparent;
+    background-color: #4A9782;
+    color: #FFF9E5;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.modalOpener {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #eee;
+    border-radius: 12px;
+    z-index: 2;
+}
+
+.modal .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+}
+
+.modal input {
+    padding: 0.4rem;
+    border: 2px solid transparent;
+}
+
+.modal input:focus {
+    outline: none;
+    border: 2px solid #4A9782;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    width: 100%;
+    min-height: 5%;
+    background-color: #004030;
+    color: #FFF9E5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.3);
+}
